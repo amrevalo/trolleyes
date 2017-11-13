@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Vista de'"></header>
+                        <header ob="ob" title="'Vista de ' + objectService.getName(ob)"></header>
                     </div>
                     <div class="panel-body">
                         <div class="row-fluid" ng-if="status">
@@ -58,9 +58,12 @@
                                     </thead>
                                     <tbody>
                                         <tr class="text-left"><td>id</td><td>{{bean.id}}</td></tr>
+                                        <tr><td>Fecha</td><td>{{bean.fecha|fechaConHoraFormateadaSinHora}}</td></tr>
                                         <tr><td>IVA</td><td>{{bean.iva}}</td></tr>
-                                        <tr><td>fecha</td><td>{{bean.fecha}}</td></tr>                                       
-                                        <tr><td>Usuario</td><td><a href="usuario/{{profile}}/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.dni}} {{bean.obj_usuario.nombre}} {{bean.obj_usuario.primer_apellido}}</td></tr>
+                                        <tr><td>Tiene IVA</td><td ng-bind-html="bean.tiene_iva|booleanizate"></td></tr>
+                                        
+                                        
+                                        <tr><td>Usuario</td><td><a href="usuario/{{profile}}/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.nombre}}</td></tr>
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">
