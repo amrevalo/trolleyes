@@ -4,7 +4,6 @@ moduloDirectivas.component('dropdown', {
     bindings: {
         ide: '=',
         tablereference: '<'
-
     },
     controller: dropdown
 });
@@ -31,7 +30,6 @@ function dropdown(serverCallService) {
                 }
 
             }
-
         }).catch(function (data) {
             console.log(data);
         });
