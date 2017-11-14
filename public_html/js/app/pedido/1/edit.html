@@ -42,7 +42,7 @@
                             {{bean|json}}
                         </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-                            <!-------------------------------------------------><!------------------------------------------------->
+                            <!------------------------------------------------->
                             <div class="form-group" id="id-group">
                                 <label class="control-label col-sm-2" for="identificador">
                                     <span ng-show="true">*</span>
@@ -60,61 +60,12 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="iva-group"
-                                 ng-class="{'has-error':(outerForm.iva.$error.pattern && !outerForm.iva.$pristine) ||
-                                             (outerForm.iva.$error.required && !outerForm.iva.$pristine)}">
-                                <label class="control-label col-sm-2" for="iva">
-                                    * IVA
-                                </label>
-                                <div class="control col-sm-2">
-                                    <input ng-model="bean.iva"
-                                           type="text"
-                                           class="form-control"
-                                           id="iva"
-                                           name="iva"
-                                           ng-pattern="/^[0-9]$/"
-                                           placeholder="Iva"
-                                           maxlength="3"
-                                           ng-required="true"
-                                           />
-                                    <span class="help-block" ng-if="!outerForm.iva.$pristine && outerForm.iva.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.iva.$pristine && outerForm.iva.$error.pattern">El campo no tiene formato adecuado: Introduzca un numero para el iva.</span>
-                                </div>
-                            </div>
-                            <!------------------------------------------------->
-
-                            <div class="form-group" id="tiene_iva-group"
-                                 ng-class="{'has-error':(outerForm.tiene_iva.$error.pattern && !outerForm.tiene_iva.$pristine) ||
-                                             (outerForm.tiene_iva.$error.required && !outerForm.tiene_iva.$pristine)}">
-                                <label class="control-label col-sm-2" for="tiene_iva">
-                                    * Tiene IVA
-                                </label>
-                                <div class="control col-sm-2">
-                                    <select id="selectFilteValue" class="form-control" name="filtervalue" width="80" style="width: 200px" ng-model="filterbyboolean.value">
-                                        <option style="display:none">selecciona una operacion</option>
-                                        <option value="TRUE"  ng-selected="true">Verdadero</option>
-                                        <option value="FALSE">Falso</option>
-                                    </select>
-                                    <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.pattern">El campo no tiene formato adecuado: Introduzca verdadero o falso.</span>
-                                </div>
-                            </div>
-
-                            <!----------h--------------------------------------->
-
-                            <!------------------------------------------------->
-
-                            <!------------------------------------------------->
-
-                            <!------------------------------------------------->
-
-                            <!------------------------------------------------->
                             <div class="form-group" id="fecha-group"
                                  ng-class="{'has-error': (outerForm.fecha.$error.required ||
-                                             outerForm.fecha.$error.valid)
-                                             && !outerForm.fecha.$pristine}">
+                                                     outerForm.fecha.$error.valid)
+                                                     && !outerForm.fecha.$pristine}">
                                 <label class="control-label col-sm-2" for="fecha">
-                                    * Fecha de pedido
+                                    <span>*</span>Fecha
                                 </label>
                                 <div class="control col-sm-2">
                                     <date-time-picker
@@ -126,10 +77,50 @@
                                     <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.required">El campo es obligatorio</span>
                                     <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.valid">El campo no tiene formato adecuado: Debe ser una fecha y hora válidas</span>
                                 </div>
+                            </div>                           
+                            <!------------------------------------------------->
+                            <div class="form-group" id="tiene_iva-group"
+                                 ng-class="{'has-error':(outerForm.tiene_iva.$error.required && !outerForm.tiene_iva.$pristine)}">
+                                <label class="control-label col-sm-2" for="tiene_iva">
+                                    <span ng-show="true">*</span>
+                                    ¿Tiene IVA?
+                                </label> 
+                                <div class="control col-sm-3">
+                                    <input  
+                                        ng-model="bean.tiene_iva" 
+                                        type="checkbox" 
+                                        id="tiene_iva" 
+                                        name="tiene_iva">
+                                    <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.required">El campo es obligatorio</span>
+                                </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="obj_usuario-group"
-                                 ng-class="{'has-error': outerForm.obj_usuario.$error.exists}">
+                            <div class="form-group" id="iva-group"
+                                 ng-class="{'has-error':(outerForm.iva.$error.pattern && !outerForm.iva.$pristine) ||
+                                                     (outerForm.iva.$error.required && !outerForm.iva.$pristine)}">
+                                <label class="control-label col-sm-2" for="iva">
+                                    <span ng-show="true">*</span>
+                                    IVA
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.iva"
+                                           type="text"
+                                           class="form-control"
+                                           id="nombre"
+                                           name="iva"
+                                           ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
+                                           placeholder="IVA"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado: El iva es un número</span>
+                                </div>
+                            </div>
+                            
+                             <!------------------------------------------------->
+                            <div class="form-group" id="obj_tipousuario-group"
+                                 ng-class="{'has-error': outerForm.obj_tipousuario.$error.exists}">
                                 <label class="control-label col-sm-2" for="obj_usuario">
                                     * Usuario
                                 </label>
@@ -147,8 +138,10 @@
                                     <span class="help-block" ng-if="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.exists">El usuario no existe</span>
                                 </div>
                             </div>
+                            
+                            
                             <!------------------------------------------------->
-                            <div class="control-group text-right">
+                            <div class="control-group text-right">                               
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
                                     <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
@@ -157,6 +150,7 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
+
                         </form>
                         <div ng-if="status">
                             <div class="alert alert-success" ng-if="response.status == 200">
