@@ -63,46 +63,38 @@ THE SOFTWARE.
                         <p></p>
                     </div>
                     <div role="tabpanel" id="pane1" class="tab-pane fade">
-                        <div class="row"> 
-                            <div class="col-md-12">
-                                <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number>
-                                                        <option value="0">Filtrar textos</option>
-                                                        <option value="1">Filtrar por id</option>
-                                                    </select>
-                                                    <p></p>
-                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="textFilterForm" ng-show="filterType == 0">
-                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter.text.field">
-                                                            <option style="display:none">selecciona un campo</option>
-                                                            <option value="descripcion">descripcion</option>
-                                                        </select>
-                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filter.text.operator">
-                                                            <option style="display:none">selecciona una operacion</option>
-                                                            <option value="like" ng-selected="true">contiene</option>
-                                                            <option value="nlik">no contiene</option>
-                                                            <option value="equa">es igual a</option>
-                                                            <option value="nequ">es distinto de</option>
-                                                        </select>
-                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filter.text.value">
-                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter(filterType)" />
-                                                    </form>
-                                                    <p></p>
-                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm2" ng-show="filterType == 1">
-                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter.number.field">
-                                                            <option style="display:none">selecciona un campo</option>
-                                                            <option value="id">identificador</option>
-                                                        </select>
-                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filter.number.operator">
-                                                            <option value="equa"  ng-selected="true">es igual a</option>
-                                                            <option value="nequ">es distinto de</option>
-                                                            <option value="lowe">es menor que</option>
-                                                            <option value="lequ">es menor o igual que</option>
-                                                            <option value="grea">es mayor que</option>
-                                                            <option value="gequ">es mayor o igual que</option>
-                                                        </select>
-                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filter.number.value">
-                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter(filterType)" />
-                                                    </form>
-                                <p></p>                            
+                        <div class="row">
+                            <div class="col-md-5">
+                                <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
+                                    <label class="control-label col-sm-3" for="filterSelection">
+                                        Selecciona filtro:
+                                    </label>
+                                    <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
+                                        <option value="0">Filtrar por descripcion</option>
+                                        <option value="1">Filtrar por id</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-md-7">
+                                <div ng-show="filterType == 0">
+                                    <plistfilterbystringspa                                   
+                                        fields="filterString"
+                                        rpp="rpp"
+                                        numpage="numpage"
+                                        orderparams="orderParams"
+                                        filterparams="filterParams">
+                                    </plistfilterbystringspa>
+                                </div>
+                                <p></p>
+                                <div ng-show="filterType == 1">
+                                    <plistfilterbynumberspa                                     
+                                        fields="filterNumber"
+                                        rpp="rpp"
+                                        numpage="numpage"
+                                        orderparams="orderParams"
+                                        filterparams="filterParams">
+                                    </plistfilterbynumberspa>
+                                </div>
                             </div>
                         </div>
                     </div>
