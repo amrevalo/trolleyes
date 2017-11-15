@@ -54,3 +54,4 @@ var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloPedido = angular.module('pedidoControllers', []);
 var moduloProducto = angular.module('productoControllers', []);
 var moduloLineapedido = angular.module('lineapedidoControllers', []);
+
