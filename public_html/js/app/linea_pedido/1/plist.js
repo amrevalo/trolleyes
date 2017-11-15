@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioPList1Controller',
+moduloLineapedido.controller('LineapedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "usuario";
+                $scope.ob = "linea_pedido";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
@@ -46,23 +46,22 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
-                $scope.filterString = [{'name': 'dni', 'longname': 'DNI'}, {'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo apellido'}, {'name': 'login', 'longname': 'Login'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-                $scope.filterDate = [{'name': 'fecha_nacimiento', 'longname': 'Fecha de nacimiento'}];
-                $scope.filterBoolean = null;
+                //$scope.filterString = [{'name': 'dni', 'longname': 'DNI'}, {'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo apellido'}, {'name': 'login', 'longname': 'Login'}];
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'cantidad', 'longname': 'Cantidad'}];
+                //$scope.filterDate = [{'name': 'fecha_nacimiento', 'longname': 'Fecha de nacimiento'}];
+                //$scope.filterBoolean = null;
                 $scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
+                $scope.filterPedido = {'name':'id_pedido','longname':'Pedido','reference':'pedido','description':['descripcion']};
+                $scope.filterProducto = {'name':'id_producto','longname':'Producto','reference':'producto','description':['descripcion']};
                 
                 //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.dni = true;
-                $scope.visibles.nombre = true;
-                $scope.visibles.primer_apellido = true;
-                $scope.visibles.segundo_apellido = true;
-                $scope.visibles.login = true;
-                $scope.visibles.email = true;
-                $scope.visibles.fecha_nacimiento = true;
-                $scope.visibles.id_tipousuario = true;
+                $scope.visibles.cantidad = true;
+                $scope.visibles.id_pedido = true;
+                $scope.visibles.id_producto = true;
+                
+                
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {

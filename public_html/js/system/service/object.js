@@ -35,13 +35,16 @@ moduloServicios.factory('objectService', function () {
                     break;
                 case "tipousuario":
                     return 'fa fa-user-o';
-                    break;              
+                    break;
                 case "pedido":
                     return 'fa fa-sticky-note-o ';
                     break;
                 case "producto":
                     return 'fa fa-gift ';
-                    break; 
+                    break;
+                case "linea_pedido":
+                    return 'fa fa-pencil-square-o ';
+                    break;
                 default:
                     return null;
             }
@@ -53,12 +56,15 @@ moduloServicios.factory('objectService', function () {
                     break;
                 case "tipousuario":
                     return "Tipo de usuario";
-                    break;               
+                    break;
                 case "pedido":
                     return "Pedido";
                     break;
                 case "producto":
                     return "Producto";
+                    break;
+                case "linea_pedido":
+                    return "Linea de Pedido";
                     break;
                 default:
                     return null;

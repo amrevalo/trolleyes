@@ -63,6 +63,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipousuario/1/plist/:page?/:rpp?', {templateUrl: 'js/app/tipousuario/1/plist.html', controller: 'TipousuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         
         $routeProvider.when('/producto/1/plist/:page?/:rpp?', {templateUrl: 'js/app/producto/1/plist.html', controller: 'ProductoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        $routeProvider.when('/linea_pedido/1/plist/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/plist.html', controller: 'LineapedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
 
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
