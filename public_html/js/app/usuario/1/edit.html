@@ -62,7 +62,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="dni-group"
                                  ng-class="{'has-error':(outerForm.dni.$error.pattern && !outerForm.dni.$pristine) ||
-                                             (outerForm.dni.$error.required && !outerForm.dni.$pristine)}">
+                                                     (outerForm.dni.$error.required && !outerForm.dni.$pristine)}">
                                 <label class="control-label col-sm-2" for="dni">
                                     * DNI
                                 </label>
@@ -84,7 +84,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="nombre-group"
                                  ng-class="{'has-error':(outerForm.nombre.$error.pattern && !outerForm.nombre.$pristine) ||
-                                             (outerForm.nombre.$error.required && !outerForm.nombre.$pristine)}">
+                                                     (outerForm.nombre.$error.required && !outerForm.nombre.$pristine)}">
                                 <label class="control-label col-sm-2" for="nombre">
                                     * Nombre
                                 </label>
@@ -106,7 +106,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="primer_apellido-group"
                                  ng-class="{'has-error':(outerForm.primer_apellido.$error.pattern && !outerForm.primer_apellido.$pristine) ||
-                                             (outerForm.primer_apellido.$error.required && !outerForm.primer_apellido.$pristine)}">
+                                                     (outerForm.primer_apellido.$error.required && !outerForm.primer_apellido.$pristine)}">
                                 <label class="control-label col-sm-2" for="primer_apellido">
                                     * Primer Apellido
                                 </label>
@@ -148,7 +148,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="login-group"
                                  ng-class="{'has-error':(outerForm.login.$error.pattern && !outerForm.login.$pristine) ||
-                                             (outerForm.login.$error.required && !outerForm.login.$pristine)}">
+                                                     (outerForm.login.$error.required && !outerForm.login.$pristine)}">
                                 <label class="control-label col-sm-2" for="login">
                                     * Login
                                 </label>
@@ -170,7 +170,7 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="email-group"
                                  ng-class="{'has-error':(outerForm.email.$error.pattern && !outerForm.email.$pristine) ||
-                                             (outerForm.email.$error.required && !outerForm.email.$pristine)}">
+                                                     (outerForm.email.$error.required && !outerForm.email.$pristine)}">
                                 <label class="control-label col-sm-2" for="email">
                                     * Email
                                 </label>
@@ -192,8 +192,8 @@
                             <!------------------------------------------------->
                             <div class="form-group" id="fecha-group"
                                  ng-class="{'has-error': (outerForm.fecha_nacimiento.$error.required ||
-                                             outerForm.fecha_nacimiento.$error.valid)
-                                             && !outerForm.fecha_nacimiento.$pristine}">
+                                                     outerForm.fecha_nacimiento.$error.valid)
+                                                     && !outerForm.fecha_nacimiento.$pristine}">
                                 <label class="control-label col-sm-2" for="fecha_nacimiento">
                                     * Fecha de nacimiento
                                 </label>
@@ -216,6 +216,7 @@
                                 </label>
                                 <div class="col-md-4">
                                     <foreign-key
+                                        ng-if="bean.obj_tipousuario.id"
                                         bean="bean.obj_tipousuario"
                                         form="outerForm"
                                         name="'obj_tipousuario'"

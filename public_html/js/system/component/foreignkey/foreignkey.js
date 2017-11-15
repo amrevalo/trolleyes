@@ -3,13 +3,13 @@ moduloDirectivas.component('foreignKey', {
     controllerAs: 'fk',
     controller: foreignkeyController1,
     bindings: {
-        bean: '=',
-        form: '=',
-        name: '<',
-        reference: '<',
-        description: '<',
-        profile: '<',
-        required: '<'
+        "bean": "=",
+        "form": "=",
+        "name": "<",
+        "reference": "<",
+        "description": "<",
+        "profile": "<",
+        "required": "<"
     }
 });
 // $postLink $onInit  $onChanges  $onDestroy
@@ -68,7 +68,7 @@ function foreignkeyController1(toolService, serverCallService, $uibModal) {
     };
     //-----
     this.$onInit = function () {
-        self.change_value(self.bean.id);
+        self.change_value();
     }
 }
 
