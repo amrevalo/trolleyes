@@ -1,0 +1,190 @@
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="ob" title="'Alta de ' + objectService.getName(ob)"></header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-success" role="alert" ng-if="debugging">
+                            <h4>Debug:</h4>
+                            {{bean|json}}
+                        </div>
+                        <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
+                            <!------------------------------------------------->
+                            <div class="form-group" id="id-group">
+                                <label class="control-label col-sm-2" for="identificador">
+                                    <span ng-show="true">*</span>
+                                    Identificador
+                                </label>
+                                <div class="control col-sm-2">
+                                    <input type="text"
+                                           ng-model="bean.id"
+                                           id="id"
+                                           class="form-control"
+                                           name="id"
+                                           placeholder="id"
+                                           size="15"
+                                           disabled />
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            <div class="form-group" id="fecha-group"
+                                 ng-class="{'has-error': (outerForm.fecha.$error.required ||
+                                                     outerForm.fecha.$error.valid)
+                                                     && !outerForm.fecha.$pristine}">
+                                <label class="control-label col-sm-2" for="fecha">
+                                    <span>*</span>Fecha
+                                </label>
+                                <div class="control col-sm-2">
+                                    <date-time-picker
+                                        name="'fecha'"
+                                        required="true"
+                                        model="bean.fecha"
+                                        form="outerForm">
+                                    </date-time-picker>
+                                    <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.valid">El campo no tiene formato adecuado: Debe ser una fecha y hora válidas</span>
+                                </div>
+                            </div>                           
+                            <!------------------------------------------------->
+                            <div class="form-group" id="tiene_iva-group"
+                                 ng-class="{'has-error':(outerForm.tiene_iva.$error.required && !outerForm.tiene_iva.$pristine)}">
+                                <label class="control-label col-sm-2" for="tiene_iva">
+                                    <span ng-show="true">*</span>
+                                    ¿Tiene IVA?
+                                </label> 
+                                <div class="control col-sm-3"> 
+                                    <select
+                                        id="tiene_iva"
+                                        ng-required="true"
+                                        class="form-control"
+                                        name="tiene_iva"
+                                        style="width: 160px"
+                                        ng-model="bean.tiene_iva">
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
+
+                                    <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.required">El campo es obligatorio</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            <div class="form-group" id="iva-group"
+                                 ng-class="{'has-error':(outerForm.iva.$error.pattern && !outerForm.iva.$pristine) ||
+                                                     (outerForm.iva.$error.required && !outerForm.iva.$pristine)}">
+                                <label class="control-label col-sm-2" for="iva">
+                                    <span ng-show="true">*</span>
+                                    IVA
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.iva"
+                                           type="text"
+                                           class="form-control"
+                                           id="nombre"
+                                           name="iva"
+                                           ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
+                                           placeholder="IVA"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado: El iva es un número</span>
+                                </div>
+                            </div>
+
+                            <!------------------------------------------------->
+                            <div class="form-group" id="obj_tipousuario-group"
+                                 ng-class="{'has-error': outerForm.obj_tipousuario.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_usuario">
+                                    * Usuario
+                                </label>
+                                <div class="col-md-4">
+                                    <foreign-key
+                                        bean="bean.obj_usuario"
+                                        form="outerForm"
+                                        name="'obj_usuario'"
+                                        reference="'usuario'"
+                                        profile="profile"
+                                        description="['descripcion']"
+                                        required="true">
+                                    </foreign-key>
+                                    <span class="help-block" ng-if="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_usuario.$pristine && outerForm.obj_usuario.$error.exists">El usuario no existe</span>
+                                </div>
+                            </div>
+
+
+                            <!------------------------------------------------->
+                            <div class="control-group text-right">                               
+                                <div class="controls">
+                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                        </form>
+                        <div ng-if="status">
+                            <div class="alert alert-success" ng-if="response.status == 200">
+                                <h2>{{status}}</h2>
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver registro</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" ng-if="response.status != 200">
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <h2>{{status}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group text-right">
+                                <div class="controls">
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" href="home">Cerrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
