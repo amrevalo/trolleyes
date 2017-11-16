@@ -1,0 +1,201 @@
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="ob" title="'Edición de ' + objectService.getName(ob)"></header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-success" role="alert" ng-if="debugging">
+                            <h4>Debug:</h4>
+                            {{bean|json}}
+                        </div>
+                        <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
+                            <!------------------------------------------------->
+                            <div class="form-group" id="id-group">
+                                <label class="control-label col-sm-2" for="identificador">
+                                    <span ng-show="true">*</span>
+                                    Identificador
+                                </label>
+                                <div class="control col-sm-2">
+                                    <input type="text"
+                                           ng-model="bean.id"
+                                           id="id"
+                                           class="form-control"
+                                           name="id"
+                                           placeholder="id"
+                                           size="15"
+                                           disabled />
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            
+                            <!------------------------------------------------->
+                            <div class="form-group" id="codigo-group"
+                                 ng-class="{'has-error':(outerForm.codigo.$error.pattern && !outerForm.codigo.$pristine) ||
+                                                     (outerForm.codigo.$error.required && !outerForm.codigo.$pristine)}">
+                                <label class="control-label col-sm-2" for="codigo">
+                                    <span ng-show="true">*</span>
+                                    Codigo
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.codigo"
+                                           type="text"
+                                           class="form-control"
+                                           id="codigo"
+                                           name="codigo"
+                                           ng-pattern="/^[0-9]+$/"
+                                           placeholder="codigo"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Los codigos deben de ser cuatro numeros.</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            <div class="form-group" id="descripcion-group"
+                                 ng-class="{'has-error':(outerForm.descripcion.$error.pattern && !outerForm.descripcion.$pristine) ||
+                                                     (outerForm.descripcion.$error.required && !outerForm.descripcion.$pristine)}">
+                                <label class="control-label col-sm-2" for="descripcion">
+                                    <span ng-show="true">*</span>
+                                    Descripcion
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.descripcion"
+                                           type="text"
+                                           class="form-control"
+                                           id="descripcion"
+                                           name="descripcion"
+                                           ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
+                                           placeholder="descripcion"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: La descripcion debe comenzar con mayúsculas.</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            <div class="form-group" id="existencias-group"
+                                 ng-class="{'has-error':(outerForm.existencias.$error.pattern && !outerForm.existencias.$pristine) ||
+                                                     (outerForm.existencias.$error.required && !outerForm.existencias.$pristine)}">
+                                <label class="control-label col-sm-2" for="existencias">
+                                    <span ng-show="true">*</span>
+                                    Existencias
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.existencias"
+                                           type="text"
+                                           class="form-control"
+                                           id="existencias"
+                                           name="existencias"
+                                           ng-pattern="/^[0-9]+$/"
+                                           placeholder="existencias"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.pattern">El campo no tiene formato adecuado son solo numeros</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            
+                            <!------------------------------------------------->
+                            <div class="form-group" id="precio-group"
+                                 ng-class="{'has-error':(outerForm.precio.$error.pattern && !outerForm.precio.$pristine) ||
+                                                     (outerForm.precio.$error.required && !outerForm.precio.$pristine)}">
+                                <label class="control-label col-sm-2" for="precio">
+                                    <span ng-show="true">*</span>
+                                    Precio
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.precio"
+                                           type="text"
+                                           class="form-control"
+                                           id="precio"
+                                           name="precio"
+                                           ng-pattern="/^[0-9]+$/"
+                                           placeholder="precio"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.precio.$pristine && outerForm.precio.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.precio.$pristine && outerForm.precio.$error.pattern">El campo no tiene formato adecuado: Deben ser numeros</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            
+                            <!------------------------------------------------->
+                            <div class="control-group text-right">                               
+                                <div class="controls">
+                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                        </form>
+                        <div ng-if="status">
+                            <div class="alert alert-success" ng-if="response.status == 200">
+                                <h2>{{status}}</h2>
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver registro</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" ng-if="response.status != 200">
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <h2>{{status}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group text-right">
+                                <div class="controls">
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" href="home">Cerrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
