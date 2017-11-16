@@ -61,7 +61,7 @@ moduloPedido.controller('PedidoRemove1Controller',
                     serverCallService.remove($scope.ob, $scope.id).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                if (response.data.json == 0) {
+                                if (response.data.json == 1) {
                                     $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
                                 } else {
                                     $scope.status = "Error en el borrado de datos del servidor"; //ss
