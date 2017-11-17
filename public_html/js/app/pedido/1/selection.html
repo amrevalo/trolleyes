@@ -1,0 +1,179 @@
+<!--
+Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+
+sisane: The stunning micro-library that helps you to develop easily
+            AJAX web applications by using Angular.js 1.x & sisane-server
+sisane is distributed under the MIT License (MIT)
+Sources at https://github.com/rafaelaznar/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+
+<div class="modal-header" ng-cloak>
+    <header ob="ob" title="'Selección de ' + objectService.getName(ob) +'s' "></header>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-xs-12" ng-if="status">
+            <div class="alert alert-danger" role="alert">
+                <h3 class="bg-danger">{{status}}</h3>                                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" ng-if="!status">
+            <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
+                    <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
+                    <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>                    
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" id="pane0" class="tab-pane fade active in">
+                        <p></p>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12">                                                    
+                                <plistinfospa></plistinfospa>
+                            </div>
+                            <div class="col-lg-6  col-md-6 col-sm-8 text-center">
+                                <plistpaginationspa></plistpaginationspa>
+                            </div>
+                            <div class="col-lg-3  col-md-3 col-sm-4 text-center">
+                                <plistrppspa></plistrppspa>
+                            </div>
+                        </div>
+                        <p></p>
+                    </div>
+                    <div role="tabpanel" id="pane1" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
+                                    <label class="control-label col-sm-3" for="filterSelection">
+                                        Selecciona filtro:
+                                    </label>
+                                    <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
+                                        <option value="0">Filtrar por codigo, descripcion</option>
+                                        <option value="1">Filtrar por id, existencias, precio</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-md-7">
+                                <div ng-show="filterType == 0">
+                                    <plistfilterbystringspa                                   
+                                        fields="filterString"
+                                        rpp="rpp"
+                                        numpage="numpage"
+                                        orderparams="orderParams"
+                                        filterparams="filterParams">
+                                    </plistfilterbystringspa>
+                                </div>
+                                <p></p>
+                                <div ng-show="filterType == 1">
+                                    <plistfilterbynumberspa                                     
+                                        fields="filterNumber"
+                                        rpp="rpp"
+                                        numpage="numpage"
+                                        orderparams="orderParams"
+                                        filterparams="filterParams">
+                                    </plistfilterbynumberspa>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" id="pane2" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p></p>
+                                <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
+                                    <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                </form>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>              
+                </div>
+            </div>
+            <div id="datos" ng-if="!status">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-center">
+                            <ul class="list-inline">
+                                <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
+                                <li><input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha">Fecha</li>
+                                <li><input type="checkbox" ng-model="visibles.iva" ng-checked="visibles.iva" >IVA</li>
+                                <li><input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario" >Id de usuario</li>
+                                <li><input type="checkbox" ng-model="visibles.tiene_iva" ng-checked="visibles.tiene_iva" >Tiene IVA</li>                                                  
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer" style="font-size: 11px !important;">
+                        <tr>
+                            <th ng-show="visibles.id" class="text-center">
+                                <label>ID.</label><br/>
+                                <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+                            <th ng-show="visibles.fecha" class="text-center">
+                                <label>Fecha</label><br/>
+                                <a ng-click="doorder('fecha', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('fecha', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+                            <th ng-show="visibles.iva" class="text-center">
+                                <label>IVA</label><br/>
+                                <a ng-click="doorder('iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+                            <th ng-show="visibles.id_usuario" class="text-center">
+                                <label>Id de usuario</label><br/>
+                                <a ng-click="doorder('id_usuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('id_usuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+                            <th ng-show="visibles.tiene_iva" class="text-center">
+                                <label>Tiene IVA</label><br/>
+                                <a ng-click="doorder('tiene_iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('tiene_iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+
+                            <th  class="text-center">Acciones</th>
+                        </tr>
+                        <tbody>
+                            <tr ng-repeat="obj in page| filter:searchText">
+                                <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
+                                <td ng-show="visibles.fecha"><b>{{obj.fecha}}</b></td>
+                                <td ng-show="visibles.iva">{{obj.iva}}</td>
+                                <td ng-show="visibles.id_usuario" class="text-center">
+                                    <a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.nombre}}</a>
+                                </td>
+                                <td ng-show="visibles.tiene_iva" ng-bind-html="obj.tiene_iva | booleanizate" class="text-center" ></td>
+
+                                <td plistoperationbarspa></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">    
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button><br>
+    <div style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>        
+</div>
