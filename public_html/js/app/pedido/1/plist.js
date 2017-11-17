@@ -50,7 +50,7 @@ moduloPedido.controller('PedidoPList1Controller',
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'iva', 'longname': 'IVA'}];
                 $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha'}];
                 $scope.filterBoolean = [{'name': 'tiene_iva', 'longname': 'Tiene_Iva'}];
-                //$scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
+                $scope.filterUsuario = {'name':'id_usuario','longname':'Usuario','reference':'usuario','description':['descripcion']};
                 
                 //---
                 $scope.visibles = {};
