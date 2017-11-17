@@ -86,11 +86,16 @@
                                     ¿Tiene IVA?
                                 </label> 
                                 <div class="control col-sm-3">
-                                    <input  
-                                        ng-model="bean.tiene_iva" 
-                                        type="checkbox" 
-                                        id="tiene_iva" 
-                                        name="tiene_iva">
+                                    <select
+                                        id="tiene_iva"
+                                        ng-required="true"
+                                        class="form-control"
+                                        name="tiene_iva"
+                                        style="width: 160px"
+                                        ng-model="bean.tiene_iva">
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
                                     <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.required">El campo es obligatorio</span>
                                 </div>
                             </div>

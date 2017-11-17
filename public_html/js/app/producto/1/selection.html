@@ -27,7 +27,7 @@ THE SOFTWARE.
 -->
 
 <div class="modal-header" ng-cloak>
-    <header ob="ob" title="'Selección de ' + objectService.getName(ob) + 's' "></header>
+    <header ob="ob" title="'Selección de ' + objectService.getName(ob) +'s' "></header>
 </div>
 <div class="modal-body">
 
@@ -70,8 +70,8 @@ THE SOFTWARE.
                                         Selecciona filtro:
                                     </label>
                                     <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                        <option value="0">Filtrar por descripcion</option>
-                                        <option value="1">Filtrar por id</option>
+                                        <option value="0">Filtrar por codigo, descripcion</option>
+                                        <option value="1">Filtrar por id, existencias, precio</option>
                                     </select>
                                 </form>
                             </div>
@@ -116,8 +116,11 @@ THE SOFTWARE.
                     <div class="panel-heading">
                         <div class="text-center">
                             <ul class="list-inline">
-                                <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">ID.</li>
-                                <li><input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion">Descripción</li>                                                  
+                                <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
+                                <li><input type="checkbox" ng-model="visibles.codigo" ng-checked="visibles.codigo">Codigo</li>
+                                <li><input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion" >Descripcion</li>
+                                <li><input type="checkbox" ng-model="visibles.existencias" ng-checked="visibles.existencias" >Existencias</li>
+                                <li><input type="checkbox" ng-model="visibles.precio" ng-checked="visibles.precio" >precio</li>                                                  
                             </ul>
                         </div>
                     </div>
@@ -128,17 +131,37 @@ THE SOFTWARE.
                                 <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>
+                            <th ng-show="visibles.codigo" class="text-center">
+                                <label>Codigo</label><br/>
+                                <a ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('codigo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
                             <th ng-show="visibles.descripcion" class="text-center">
-                                <label>Descripción</label><br/>
+                                <label>Descripcion</label><br/>
                                 <a ng-click="doorder('descripcion', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('descripcion', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                            </th>                                               
+                            </th>
+                            <th ng-show="visibles.existencias" class="text-center">
+                                <label>Existencias</label><br/>
+                                <a ng-click="doorder('existencias', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('existencias', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+                            <th ng-show="visibles.precio" class="text-center">
+                                <label>Precio</label><br/>
+                                <a ng-click="doorder('precio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('precio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
+
                             <th  class="text-center">Acciones</th>
                         </tr>
                         <tbody>
                             <tr ng-repeat="obj in page| filter:searchText">
                                 <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                <td ng-show="visibles.descripcion"><b>{{obj.descripcion}}</b></td>                                                    
+                                <td ng-show="visibles.codigo"><b>{{obj.codigo}}</b></td>
+                                <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
+                                <td ng-show="visibles.existencias">{{obj.existencias}}</td>
+                                <td ng-show="visibles.precio">{{obj.precio}}</td>
+
                                 <td plistoperationbarspa></td>
                             </tr>
                         </tbody>
