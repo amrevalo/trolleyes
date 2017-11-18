@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Creacion de ' + objectService.getName(ob) + ' del pedido id: ' + pedidobean.id   "></header>                       
+                        <header ob="ob" title="'Creacion de ' + objectService.getName(ob) + ' con el producto ' + productobean.descripcion "></header>                       
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-success" role="alert" ng-if="debugging">
@@ -60,6 +60,7 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
+                            
                             <div class="form-group" id="cantidad-group"
                                  ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
                                                      (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
@@ -95,29 +96,31 @@
                             <!------------------------------------------------->
        
                             <!------------------------------------------------->
-                            
-                            
-                            <!------------------------------------------------->
-                            
-                            <div class="form-group" id="obj_producto-group"
-                                 ng-class="{'has-error': outerForm.obj_producto.$error.exists}">
-                                <label class="control-label col-sm-2" for="obj_producto">
-                                    * Producto
+                            <div class="form-group" id="obj_pedido-group"
+                                 ng-class="{'has-error': outerForm.obj_pedido.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_pedido">
+                                    * Pedido
                                 </label>
                                 <div class="col-md-4">
                                     <foreign-key
-                                        bean="bean.obj_producto"
+                                        bean="bean.obj_pedido"
                                         form="outerForm"
-                                        name="'obj_producto'"
-                                        reference="'producto'"
+                                        name="'obj_pedido'"
+                                        reference="'pedido'"
                                         profile="profile"
-                                        description="['descripcion']"
+                                        description="['fecha']"
                                         required="true">
                                     </foreign-key>
-                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.exists">El producto no existe</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.exists">El pedido no existe</span>
                                 </div>
-                            </div> 
+                            </div>
+                            
+                            <!------------------------------------------------->
+                            
+                            
+                            
+                            
                             <!------------------------------------------------->
                             <div class="control-group text-right">                               
                                 <div class="controls">
