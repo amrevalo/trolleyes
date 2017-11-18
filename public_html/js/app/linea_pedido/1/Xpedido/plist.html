@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Listado de ' + objectService.getName(ob)"></header>
+                        <header ob="ob" title="'Listado de ' + objectService.getName(ob) + ' para el pedido ' + pedidobean.id "></header>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -97,27 +97,14 @@
                                                             Selecciona filtro:
                                                         </label>
                                                         <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                                            <!-- <option value="0">Filtrar por producto</option> -->
                                                             <option value="1">Filtrar por id, cantidad, id pedido</option>
-                                                            <!--      <option value="2">Filtrar por fecha de nacimiento</option>  -->
-                                                                 <option value="3">Filtrar por producto</option>
-                                                                 <option value="4">Filtrar por pedido</option>
+                                                            <option value="3">Filtrar por producto</option>
+                                                            <option value="4">Filtrar por pedido</option>                                                          
                                                         </select>
                                                     </form>
                                                 </div>
-                                                <div class="col-md-7">
+                                                <div class="col-md-7">                                          
                                                     <div ng-show="filterType == 0">
-                                                        <cplistfilterbystring
-                                                            url="url"
-                                                            fields="filterString"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbystring>
-                                                    </div>
-                                                    <p></p>
-                                                    <div ng-show="filterType == 1">
                                                         <cplistfilterbynumber
                                                             url="url"
                                                             fields="filterNumber"
@@ -128,7 +115,7 @@
                                                         </cplistfilterbynumber>
                                                     </div>
                                                     <p></p>
-                                                    <div ng-show="filterType == 2">
+                                                    <div ng-show="filterType == 1">
                                                         <cplistfilterbydate
                                                             url="url"
                                                             fields="filterDate"
@@ -137,6 +124,17 @@
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbydate>
+                                                    </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 2">
+                                                        <cplistfilterbyboolean
+                                                            url="url"
+                                                            fields="filterBoolean"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams">
+                                                        </cplistfilterbyboolean>
                                                     </div>
                                                     <p></p>
                                                     <div ng-show="filterType == 3">
@@ -180,7 +178,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/newXpedido/{{xid}}/">Crear una nueva {{ob}} para el pedido {{pedidobean.id}})</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -196,7 +194,6 @@
                                                     <li><input type="checkbox" ng-model="visibles.cantidad" ng-checked="visibles.cantidad">Cantidad</li>
                                                     <li><input type="checkbox" ng-model="visibles.id_pedido" ng-checked="visibles.id_pedido" >Id pedido</li>
                                                     <li><input type="checkbox" ng-model="visibles.id_producto" ng-checked="visibles.id_producto" >Id producto</li>
-
                                                 </ul>
                                             </div>
                                         </div>
@@ -240,7 +237,6 @@
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <actions id="obj.id" name="ob"></actions>
-                                                                
                                                             </div>
                                                         </div>
                                                     </td>
@@ -250,6 +246,7 @@
                                     </div>
                                 </div>
                                 <a class="btn btn-default" href="home">Cerrar</a>
+                                <a class="btn btn-default" ng-click="back()">Volver</a>
                             </div>
                         </div>
                     </div>
