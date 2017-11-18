@@ -50,7 +50,7 @@ moduloLineapedido.controller('LineapedidoPList1Controller',
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'cantidad', 'longname': 'Cantidad'}, {'name': 'id_pedido', 'longname': 'id de pedido'}];
                 //$scope.filterDate = [{'name': 'fecha_nacimiento', 'longname': 'Fecha de nacimiento'}];
                 //$scope.filterBoolean = null;
-                $scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
+                //$scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
                 $scope.filterPedido = {'name':'id_pedido','longname':'Pedido','reference':'pedido','description':['fecha']};
                 $scope.filterProducto = {'name':'id_producto','longname':'Producto','reference':'producto','description':['descripcion']};
                 

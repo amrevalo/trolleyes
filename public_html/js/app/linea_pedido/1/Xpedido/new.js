@@ -46,6 +46,10 @@ moduloLineapedido.controller('LineapedidoXpedidoNew1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
+                
+                
+                
+                
                 serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
