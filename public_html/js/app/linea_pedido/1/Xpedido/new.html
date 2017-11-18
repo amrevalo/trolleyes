@@ -73,13 +73,13 @@
                                            class="form-control"
                                            id="cantidad"
                                            name="cantidad"
-                                           ng-pattern="/^[0-9]/"
+                                           ng-pattern="^[0-9]*$/"
                                            placeholder="Cantidad"
                                            maxlength="9"
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.pattern">El campo no tiene formato adecuado: Introduzca un Cantidad de 8 digitos y una letra mayúscula.</span>
+                                    <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.pattern">El campo no tiene formato adecuado: Introduzca solo numeros que sean enteros maximo nueve.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
@@ -111,7 +111,7 @@
                                         required="true">
                                     </foreign-key>
                                     <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.exists">El tipo de usuario no existe</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.exists">El pedido no existe</span>
                                 </div>
                             </div>
                             
@@ -133,7 +133,7 @@
                                         required="true">
                                     </foreign-key>
                                     <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.exists">El tipo de usuario no existe</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.exists">El producto no existe</span>
                                 </div>
                             </div> 
                             <!------------------------------------------------->
