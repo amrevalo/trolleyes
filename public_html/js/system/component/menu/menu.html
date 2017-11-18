@@ -62,8 +62,10 @@
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 2">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Medico</li>
-                        <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
+                        
+                        <li class="dropdown-header">Cliente</li>
+                   <li ng-class="{ 'active': mn.isActive('/producto/2/plist')}"><a href="producto/2/plist"> <i ng-class="mn.object_info.getIcon('producto')"></i> {{mn.object_info.getName("producto")}}</a></li>
+                 <!--       <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
                         <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>                   
                         <li class="dropdown-header">Centro sanitario</li>
                         <li ng-class="{ active: isActive('/generic/servicio/plist')}"><a href="generic/servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
@@ -74,7 +76,7 @@
                         <li ng-class="{ active: isActive('/generic/modalidadepisodio/plist')}"><a href="generic/modalidadepisodio/plist"> <i class="fa fa-address-book-o"></i> Modalidad del episodio</a></li>
                         <li ng-class="{ active: isActive('/generic/circunstanciasalta/plist')}"><a href="generic/circunstanciasalta/plist"> <i class="fa fa-address-book-o"></i> Circunstancias de alta</a></li>
                         <li ng-class="{ active: isActive('/generic/destinoalta/plist')}"><a href="generic/destinoalta/plist"> <i class="fa fa-address-book-o"></i> Destino de alta</a></li>
-
+                   -->
                     </ul>
                 </li>
 
