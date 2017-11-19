@@ -56,6 +56,9 @@ moduloServicios.factory('serverCallService',
                     getOne: function (strClass, id) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
                     },
+                    getcarrito: function (strClass) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=list');
+                    },
                     remove: function (strClass, id) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
                     },

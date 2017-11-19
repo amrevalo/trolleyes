@@ -91,7 +91,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //---------------------------------------------PERFIL 2
         //$routeProvider.when('/usuario/2/plist/:page?/:rpp?', {templateUrl: 'js/app/usuario/2/plist.html', controller: 'UsuarioPList2Controller', resolve: {auth: authenticationAdministratorPromise}});  
         $routeProvider.when('/producto/2/plist/:page?/:rpp?', {templateUrl: 'js/app/producto/2/plist.html', controller: 'ProductoPList2Controller', resolve: {auth: authenticationClientPromise}});
-        
+        $routeProvider.when('/producto/2/carritoplist/:page?/:rpp?', {templateUrl: 'js/app/producto/2/carritoplist.html', controller: 'CarritoPList2Controller', resolve: {auth: authenticationClientPromise}});
         
         
 
